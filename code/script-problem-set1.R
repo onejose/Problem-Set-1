@@ -2,13 +2,14 @@
 #######Versión de R: "R version 4.2.1 (2022-06-23)"
 R.Version()$version.string
 
-## clean environment
-rm(list=ls())
 #### **☑ Librerías**
+install.packages("tidyverse") 
+library(tidyverse)
 
-## instalar/llamar pacman
+install.packages("rio")
+library("rio")
 install.packages("pacman")
-require(pacman)
+library("pacman")
 
 ## usar la función p_load de pacman para instalar/llamar las librerías de la clase
 p_load(dplyr,
