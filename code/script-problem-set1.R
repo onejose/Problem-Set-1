@@ -1,4 +1,4 @@
-#######Nombres: Juan Jose Gutierrez Pelaez 201923547, Laura Victoria Gonzalez 202011064, Gabriela Ramirez
+#######Nombres: Juan Jose Gutierrez Pelaez 201923547, Laura Victoria Gonzalez 202011064, Gabriela Ramirez 202123417
 #######Versión de R: "R version 4.2.1 (2022-06-23)"
 R.Version()$version.string
 
@@ -29,14 +29,6 @@ vector_pares <- vector1_100[vector1_100 %in% seq(2, 100, by = 2)]
 ## 2. Importar / exportar bases de datos
 setwd("/Users/lauragonzalez/Desktop/UNIANDES VICKY/QUINTO SEMESTRE/PROGRAMA R/PROBLEM-SET1/problem-sets-main/problem-set-1")
 setwd("C:/Users/juanj/OneDrive - Universidad de los Andes/Andes/#4 - Semester/Taller R/Problem Set 1")
-install.packages("tidyverse") 
-library(tidyverse)
-#install.packages("devtools")
-#devtools::install_github("r-lib/conflicted")
-install.packages("rio")
-library("rio")
-install.packages("pacman")
-library("pacman")
 
 # PUNTO 2.1
 library(haven)
