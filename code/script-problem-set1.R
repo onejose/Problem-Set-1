@@ -60,6 +60,16 @@ select(.data=Modulo_de_identificacion, all_of(varsid))
 nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA"))
 
 ##PUNTO 6
+summary(Modulo_de_identificacion$P241)
+Ocupados_Enero = subset(x = Modulo_de_identificacion,MES_REF =="ENERO" )
+Ocupados_Febrero = subset(x = Modulo_de_identificacion,MES_REF =="FEBRERO" )
+summary(Ocupados_Enero$P241)
+summary(Ocupados_Febrero$P241)
+#La media de la edad del propietario es levemente menor en los del mes de Enero que en Febrero, pues en Enero es aproximadamente 49 y en Febrero 50.
+
+summary(Ocupados_Enero$P35)
+summary(Ocupados_Febrero$P35)
+#Con base en la media, se puede concluir que en Enero hay más mujeres que en Febrero
 
 ubicacioneid <- c(nuevo_df)
 mean(nuevo_df$P3034)
@@ -68,5 +78,10 @@ mean(nuevo_df$P3032_3)
 
 ggplot(nuevo_df, aes(P35, P3034)) + geom_line(colour="red") + geom_point (size=1, shape=21, fill="white", colour="red")
 ggsave ("output/grafico de dispersion.png")
-ggplot(nuevo_df, aes(x=P35)) + geom_bar(colour="red")
+ggplot(nuevo_df, aes(x=P35)) + geom_bar(colour="blue")
 ggsave ("output/grafico de barras.png")
+ggplot(Modulo_de_identificacion, aes(x =COD_DEPTO)) + geom_bar(colour="green")
+ggsave ("output/grafico de barras2.png")
+ggplot(Modulo_de_identificacion, aes(x =P241)) + geom_bar(colour="black")
+
+
