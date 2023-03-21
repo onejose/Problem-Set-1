@@ -59,9 +59,7 @@ varsid=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA","P35","P241","P3032_1",
 select(.data=Modulo_de_identificacion, all_of(varsid))
 
 ## PUNTO 5 
+nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA"))
 
-varsub=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA", "P3054", "P469", "COD_DEPTO", "F_EXP")
-select(.data=Modulo_sitio_ubicacion, all_of(varsub))
-varsid=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA","P35","P241","P3032_1","P3032_2","P3032_3","P3033","P3034")
-select(.data=Modulo_de_identificacion, all_of(varsid))
+##PUNTO 6
 
