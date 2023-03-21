@@ -59,28 +59,28 @@ select(.data=Modulo_de_identificacion, all_of(varsid)) #se seleccionan las varia
 nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA")) #Se usa las variables DIRECTORIO, SECUENCIA_P y SECUENCIA_ENCUESTA para unir una única base de datos con los objetos del punto anterior.
 
 ##PUNTO 6
-summary(Modulo_de_identificacion$P241)
-Ocupados_Enero = subset(x = Modulo_de_identificacion,MES_REF =="ENERO" )
-Ocupados_Febrero = subset(x = Modulo_de_identificacion,MES_REF =="FEBRERO" )
-summary(Ocupados_Enero$P241)
-summary(Ocupados_Febrero$P241)
-#La media de la edad del propietario es levemente menor en los del mes de Enero que en Febrero, pues en Enero es aproximadamente 49 y en Febrero 50.
+summary(Modulo_de_identificacion$P241)  #se obtuvo las estadísticas descriptivas de la variable relacionada a la edad
+Ocupados_Enero = subset(x = Modulo_de_identificacion,MES_REF =="ENERO" ) #se filtraron los datos para obtener la información de los ocupados del mes de Enero
+Ocupados_Febrero = subset(x = Modulo_de_identificacion,MES_REF =="FEBRERO" ) #se filtraron los datos para obtener la información de los ocupados del mes de Febrero
+summary(Ocupados_Enero$P241) #se obtuvo las estadísticas descriptivas para la información relacionada a la edad solamente para el mes de Enero
+summary(Ocupados_Febrero$P241) #se obtuvo las estadísticas descriptivas para la información relacionada a la edad solamente para el mes de Febrero
+#Con estas tablas, se comparó la información de los ocupados de Enero y Febrero. La media de la edad del propietario es levemente menor en los del mes de Enero que en Febrero, pues en Enero es aproximadamente 49 y en Febrero 50.
 
-summary(Ocupados_Enero$P35)
-summary(Ocupados_Febrero$P35)
-#Con base en la media, se puede concluir que en Enero hay más mujeres que en Febrero
+summary(Ocupados_Enero$P35) #se encontraron las estadísticas desctriptivas en una tabla sobre la información del seño para las personas del mes de Enero
+summary(Ocupados_Febrero$P35) #se encontraron las estadísticas desctriptivas en una tabla sobre la información del seño para las personas del mes de Febrero
+#Con base en la media presentada en las tablas, se puede concluir que en Enero hay más mujeres que en Febrero
 
 ubicacioneid <- c(nuevo_df) #6.1
 mean(nuevo_df$P3034) #de la muestra de estos datos, se evidencia que en promedio, los negociantes llevan 158 meses trabajando en su negocio.
 mean(nuevo_df$p3032_1) #de la muestra de estos datos, en promedio, los negociantes no tienen trabajadores a los cuales les den un pago.
 mean(nuevo_df$P3032_3) #en promedio, los negociantes no tienen trabajadores o familiares sin remuneracion en sus negocios.
 
-ggplot(nuevo_df, aes(P35, P3034)) + geom_line(colour="red") + geom_point (size=1, shape=21, fill="white", colour="red") #se realiza un grafico de dispersion que refleja el comportamiento de dichas variables.
+ggplot(nuevo_df, aes(P35, P3034)) + geom_line(colour="red") + geom_point (size=1, shape=21, fill="white", colour="red")
 ggsave ("output/grafico de dispersion.png")
-ggplot(nuevo_df, aes(x=P35)) + geom_bar(colour="blue")
-ggsave ("output/grafico de barras.png")
-ggplot(Modulo_de_identificacion, aes(x =COD_DEPTO)) + geom_bar(colour="green")
-ggsave ("output/grafico de barras2.png")
-ggplot(Modulo_de_identificacion, aes(x =P241)) + geom_bar(colour="black")
-ggsave ("output/grafico de barras3.png")
+ggplot(nuevo_df, aes(x=P35)) + geom_bar(colour="blue") #se creo un grafico de barras para entender la distribución del sexo de los datos, llegando a que hay más hombres (1) que mujeres (2)
+ggsave ("output/grafico de barras.png")  #se guardó la gráfica en formato png output
+ggplot(Modulo_de_identificacion, aes(x =COD_DEPTO)) + geom_bar(colour="green") #Se creo una gráfica de barras con respecto al código del departamento 
+ggsave ("output/grafico de barras2.png")  #se guardó la gráfica en formato png output
+ggplot(Modulo_de_identificacion, aes(x =P241)) + geom_bar(colour="black") #Se creó un gráfico de barras que muestra la cantidad de personas con las edades, mostrando la distribución
+ggsave ("output/grafico de barras3.png") #se guardó la gráfica en formato png output
 
