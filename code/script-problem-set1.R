@@ -23,10 +23,10 @@ p_load(dplyr,
        data.table)
 
 ## 1. Vectores
-vector1_100 <- vector("numeric", length = 100)
-vector1_100 <- 1:100
-vector_impares <- seq(from = 1, to = 99, by = 2)
-vector_pares <- vector1_100[vector1_100 %in% seq(2, 100, by = 2)]
+vector1_100 <- vector("numeric", length = 100) #creamos el vector del 1 al 100
+vector1_100 <- 1:100 #se observa la longitud del vector creado
+vector_impares <- seq(from = 1, to = 99, by = 2) #se crea vector que contiene numeros impares del 1 al 100
+vector_pares <- vector1_100[vector1_100 %in% seq(2, 100, by = 2)] #se crea vector que contiene numeros pares del 1 al 100
 
 ## PUNTO 2. Importar / exportar bases de datos
 # 2.1
@@ -35,7 +35,6 @@ Modulo_de_identificacion = read_dta("input/Módulo de identificación.dta")
 Modulo_sitio_ubicacion = read_dta("input/Módulo de sitio o ubicación.dta")
 
 # 2.2
-#C:/Usersjuanj/OneDrive - Universidad de los Andes/Andes/#4 - Semester/Taller R/Problem Set 1/output/
 export(Modulo_sitio_ubicacion, file= "output/Modulo_ubicacion.rds")
 export(Modulo_de_identificacion, file= "output/Modulo_identificacion.rds")
 
@@ -57,7 +56,7 @@ varsid=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA","P35","P241","P3032_1",
 select(.data=Modulo_de_identificacion, all_of(varsid))
 
 ## PUNTO 5 
-nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA"))
+nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA")) #Se usa las variables DIRECTORIO, SECUENCIA_P y SECUENCIA_ENCUESTA para unir una única base de datos con los objetos del punto anterior.
 
 ##PUNTO 6
 summary(Modulo_de_identificacion$P241)
@@ -71,12 +70,12 @@ summary(Ocupados_Enero$P35)
 summary(Ocupados_Febrero$P35)
 #Con base en la media, se puede concluir que en Enero hay más mujeres que en Febrero
 
-ubicacioneid <- c(nuevo_df)
-mean(nuevo_df$P3034)
-mean(nuevo_df$p3032_1)
-mean(nuevo_df$P3032_3)
+ubicacioneid <- c(nuevo_df) #6.1
+mean(nuevo_df$P3034) #de la muestra de estos datos, se evidencia que en promedio, los negociantes llevan 158 meses trabajando en su negocio.
+mean(nuevo_df$p3032_1) #de la muestra de estos datos, en promedio, los negociantes no tienen trabajadores a los cuales les den un pago.
+mean(nuevo_df$P3032_3) #en promedio, los negociantes no tienen trabajadores o familiares sin remuneracion en sus negocios.
 
-ggplot(nuevo_df, aes(P35, P3034)) + geom_line(colour="red") + geom_point (size=1, shape=21, fill="white", colour="red")
+ggplot(nuevo_df, aes(P35, P3034)) + geom_line(colour="red") + geom_point (size=1, shape=21, fill="white", colour="red") #se realiza un grafico de dispersion que refleja el comportamiento de dichas variables.
 ggsave ("output/grafico de dispersion.png")
 ggplot(nuevo_df, aes(x=P35)) + geom_bar(colour="blue")
 ggsave ("output/grafico de barras.png")
