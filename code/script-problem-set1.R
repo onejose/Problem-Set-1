@@ -83,5 +83,5 @@ ggsave ("output/grafico de barras.png")
 ggplot(Modulo_de_identificacion, aes(x =COD_DEPTO)) + geom_bar(colour="green")
 ggsave ("output/grafico de barras2.png")
 ggplot(Modulo_de_identificacion, aes(x =P241)) + geom_bar(colour="black")
-
+ggsave ("output/grafico de barras3.png")
 
