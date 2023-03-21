@@ -68,3 +68,12 @@ nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("
 
 ##PUNTO 6
 
+ubicacioneid <- c(nuevo_df)
+mean(nuevo_df$P3034)
+mean(nuevo_df$p3032_1)
+mean(nuevo_df$P3032_3)
+
+ggplot(nuevo_df, aes(P35, P3034)) + geom_line(colour="red") + geom_point (size=1, shape=21, fill="white", colour="red")
+ggsave ("output/grafico de dispersion.png")
+ggplot(nuevo_df, aes(x=P35)) + geom_bar(colour="red")
+ggsave ("output/grafico de barras.png")
