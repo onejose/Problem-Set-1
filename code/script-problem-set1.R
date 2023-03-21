@@ -1,13 +1,6 @@
-<<<<<<< Updated upstream
 #######Nombres: Juan Jose Gutierrez Pelaez 201923547, Laura Victoria Gonzalez 202011064, Gabriela Ramirez 202123417
 #######Versión de R: "R version 4.2.1 (2022-06-23)"
 R.Version()$version.string
-setwd("/Users/lauragonzalez/Desktop/UNIANDES VICKY/QUINTO SEMESTRE/PROGRAMA R/PROBLEM-SET1/problem-sets-main/problem-set-1")
-=======
-## Juan Jose Gutierrez Pelaez 201923547, Laura Victoria Gonzalez, Gabriela Ramírez Caro 202123417
-## R version 4.2.2 (2022-10-31 ucrt)
->>>>>>> Stashed changes
-setwd("C:/Users/juanj/OneDrive - Universidad de los Andes/Andes/#4 - Semester/Taller R/Problem Set 1")
 
 #### **☑ Librerías**
 install.packages("tidyverse") 
