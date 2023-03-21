@@ -3,16 +3,16 @@
 R.Version()$version.string
 
 #### **☑ Librerías**
-install.packages("tidyverse") 
-library(tidyverse)
-install.packages("rio")
-library(rio)
-install.packages("pacman")
-library(pacman)
-install.packages("haven")
-library(haven)
-install.packages("ggplog2")
-library(ggplog2)
+install.packages("tidyverse") #se instala tidyverse
+library(tidyverse) # se carga tidyverse
+install.packages("rio") #se instala rio
+library(rio) #se carga rio
+install.packages("pacman") # se instala pacman
+library(pacman) # se carga pacman
+install.packages("haven") # se instala haven
+library(haven)    # se carga haven
+install.packages("ggplot2")  # se instala ggplot
+library(ggplot2) # se carga ggplot
 ## usar la función p_load de pacman para instalar/llamar las librerías de la clase
 p_load(dplyr,
        rio,
@@ -31,30 +31,29 @@ vector_pares <- vector1_100[vector1_100 %in% seq(2, 100, by = 2)]
 ## PUNTO 2. Importar / exportar bases de datos
 # 2.1
 
-Modulo_de_identificacion = read_dta("input/Módulo de identificación.dta")
-Modulo_sitio_ubicacion = read_dta("input/Módulo de sitio o ubicación.dta")
+Modulo_de_identificacion = read_dta("input/Módulo de identificación.dta") #funcion read_dta usada para llamar como objeto la base de datos indicada
+Modulo_sitio_ubicacion = read_dta("input/Módulo de sitio o ubicación.dta") #funcion read_dta usada para llamar como objeto la base de datos indicada
 
 # 2.2
-#C:/Usersjuanj/OneDrive - Universidad de los Andes/Andes/#4 - Semester/Taller R/Problem Set 1/output/
-export(Modulo_sitio_ubicacion, file= "output/Modulo_ubicacion.rds")
-export(Modulo_de_identificacion, file= "output/Modulo_identificacion.rds")
+export(Modulo_sitio_ubicacion, file= "output/Modulo_ubicacion.rds") #funcion export de rio usada para exportar el objeto indicado como un archivo rds
+export(Modulo_de_identificacion, file= "output/Modulo_identificacion.rds") #funcion export de rio usada para exportar el objeto indicado como un archivo rds
 
 # PUNTO 3
 Modulo_de_identificacion = mutate(Modulo_de_identificacion, bussiness_type = case_when(GRUPOS4 == "01"~"Agricultura",
                                                                                        GRUPOS4 == "02"~"Industria manufacturera",
                                                                                        GRUPOS4 == "03"~"Comercio",
-                                                                                       GRUPOS4 == "04"~"Servicios"))
+                                                                                       GRUPOS4 == "04"~"Servicios")) #funcion mutate de dplyr usada para crear una nueva variable "bussiness_type" que tome los valores indicados basandose en la variable "GRUPOS4"
 
 Modulo_sitio_ubicacion = mutate (Modulo_sitio_ubicacion, local =case_when(P3053==6~1,
-                                                                          P3053==7~1))
+                                                                          P3053==7~1))  #funcion mutate de dplyr usada para crear una nueva variable "local" que tome los valores indicados basandose en la variable "P3053"
 
 # PUNTO 4
 
-Modulo_de_identificacion = subset(x = Modulo_de_identificacion,bussiness_type == "Industria manufacturera" )
-varsub=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA", "P3054", "P469", "COD_DEPTO", "F_EXP")
-select(.data=Modulo_sitio_ubicacion, all_of(varsub))
-varsid=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA","P35","P241","P3032_1","P3032_2","P3032_3","P3033","P3034")
-select(.data=Modulo_de_identificacion, all_of(varsid))
+Modulo_de_identificacion = subset(x = Modulo_de_identificacion,bussiness_type == "Industria manufacturera" ) #funcion subset de R usada para editar el objeto Modulo_de_Identificacion para que solo contenga las observaciones en las cuales bussiness_type toma los valores de industria manufacturera
+varsub=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA", "P3054", "P469", "COD_DEPTO", "F_EXP") # se crea un vector con los elementos siendo los nombres de las variables de interes
+select(.data=Modulo_sitio_ubicacion, all_of(varsub)) #se seleccionan las variables del vector creado en la base de datos indicada 
+varsid=c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA","P35","P241","P3032_1","P3032_2","P3032_3","P3033","P3034")  # se crea un vector con los elementos siendo los nombres de las variables de interes
+select(.data=Modulo_de_identificacion, all_of(varsid)) #se seleccionan las variables del vector creado en la base de datos indicada
 
 ## PUNTO 5 
 nuevo_df <- full_join(Modulo_sitio_ubicacion, Modulo_de_identificacion, by = c("DIRECTORIO","SECUENCIA_P","SECUENCIA_ENCUESTA"))
